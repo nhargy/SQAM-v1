@@ -16,7 +16,7 @@
 
 #include "MyDetectorConstruction.hh"
 
-class MyDetectorConstruction : public G4VUserDetectorConstruction() {
+class MyDetectorConstruction : public G4VUserDetectorConstruction {
     public:
         MyDetectorConstruction();
         ~MyDetectorConstruction();
@@ -40,18 +40,21 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction() {
         G4double xCube, yCube, zCube;
 
         /* Define solid, logical and physical volumes */
-        G4Box *solidWorld; 
-        G4Box *solidLeg, *solidProfile, *solidSpine, *solidSubSpine;
+        G4Box *solidWorld, *solidFloor;
+        G4Box *solidProfile, *solidSpine, *solidSubSpine;
+        G4Box *solidLeg;
         G4Box *solidCube;
         G4Tubs *solidRim, *solidMidCylinder, *solidEdgeCylinder;
     
-        G4LogicalVolume *logicWorld;
-        G4LogicalVolume *logicLeg, *logicProfile, *logicSpine, *logicSubSpine;
-        G4LogicalVolune *logicCube;
+        G4LogicalVolume *logicWorld, *logicFloor;
+        G4LogicalVolume *logicProfile, *logicSpine, *logicSubSpine;
+        G4LogicalVolume *logicLeg;
+        G4LogicalVolume *logicCube;
         G4LogicalVolume *logicRim, *logicMidCylinder, *logicEdgeCylinder;
 
-        G4VPhysicalVolume *physWorld;
-        G4VPhysicalVolume *physLeg, *physProfile, *physSpine, *physSubSpine;
+        G4VPhysicalVolume *physWorld, *physFloor;
+        G4VPhysicalVolume *physProfile, *physSpine, *physSubSpine1, *physSubSpine2;
+        G4VPhysicalVolume *physLeg1, *physLeg2, *physLeg3, *physLeg4;
         G4VPhysicalVolume *physCube;
         G4VPhysicalVolume *physRim, *physMidCylinder, *physEdgeCylinder;
         
@@ -60,6 +63,6 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction() {
         void DefineMaterials();
 
         G4GenericMessenger *fMessengerCube;
-}
+};
 
 #endif

@@ -9,7 +9,7 @@
 #include "MyStackingAction.hh"
 #include "MyEventAction.hh"
 
-class MyActionInitialization : public G4VUserActionInitialization{
+class MyActionInitialization : public G4VUserActionInitialization {
     public:
         MyActionInitialization();
         ~MyActionInitialization();

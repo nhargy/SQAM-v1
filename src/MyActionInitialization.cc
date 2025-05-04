@@ -1,5 +1,6 @@
 #include "MyActionInitialization.hh"
 #include "MyPrimaryGenerator.hh"
+#include "MyRunAction.hh"
 #include "MySteppingAction.hh"
 #include "MyTrackingAction.hh"
 #include "MyStackingAction.hh"

@@ -14,21 +14,17 @@
 #include "G4VisExecutive.hh"
 #include "G4VisManager.hh"
 
-#include "MyActionInitialization.hh"
 #include "MyDetectorConstruction.hh"
 #include "MyPhysicsList.hh"
-
 #include "MyActionInitialization.hh"
-#include "MyDetectorConstruction.hh"
-#include "MyPhysicsList.hh"
 
 int main(int argc, char **argv) {
 
     G4RunManager* runManager = new G4RunManager();
     
-    runManager->SetUserInitialization(new MyActionInitialization());
     runManager->SetUserInitialization(new MyDetectorConstruction());
     runManager->SetUserInitialization(new MyPhysicsList());
+    runManager->SetUserInitialization(new MyActionInitialization());
 
     // Initialize visualisation only if no macro is passed
     G4UIExecutive* ui = 0;
