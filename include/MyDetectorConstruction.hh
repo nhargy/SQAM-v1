@@ -44,19 +44,19 @@ class MyDetectorConstruction : public G4VUserDetectorConstruction {
         G4Box *solidProfile, *solidSpine, *solidSubSpine;
         G4Box *solidLeg;
         G4Box *solidCube;
-        G4Tubs *solidRim, *solidMidCylinder, *solidEdgeCylinder;
+        G4Tubs *solidRim, *solidCylinder, *solidPlug;
     
         G4LogicalVolume *logicWorld, *logicFloor;
         G4LogicalVolume *logicProfile, *logicSpine, *logicSubSpine;
         G4LogicalVolume *logicLeg;
         G4LogicalVolume *logicCube;
-        G4LogicalVolume *logicRim, *logicMidCylinder, *logicEdgeCylinder;
+        G4LogicalVolume *logicRim, *logicCylinder, *logicPlug;
 
         G4VPhysicalVolume *physWorld, *physFloor;
         G4VPhysicalVolume *physProfile, *physSpine, *physSubSpine1, *physSubSpine2;
         G4VPhysicalVolume *physLeg1, *physLeg2, *physLeg3, *physLeg4;
         G4VPhysicalVolume *physCube;
-        G4VPhysicalVolume *physRim, *physMidCylinder, *physEdgeCylinder;
+        G4VPhysicalVolume *physRim, *physCylinder, *physPlug1, *physPlug2;
         
         // Material definitions
         G4Material *Air, *Water, *LiF, *Pb, *Al, *Concrete;

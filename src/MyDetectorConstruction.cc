@@ -341,6 +341,98 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct() {
     // *********************************************************************
 
 
+    // **** Build Cylinder *************************************************
+    G4double InnerRadCylinder = 1.68*cm;
+    G4double OuterRadCylinder = 3.35*cm;
+    G4double HeightCylinder   = 5.2*cm;
+
+    G4double xCylinderPos = 0.*cm;
+    G4double yCylinderPos = 0.*cm;
+    G4double zCylinderPos = (-zWorld + 2*zFloor + 2*zProfile + 2*HeightRim + HeightCylinder);
+    
+    auto CylinderVector = G4ThreeVector(xCylinderPos, yCylinderPos, zCylinderPos);    
+
+    solidCylinder = new G4Tubs("solidCylinder",
+                           InnerRadCylinder,
+                           OuterRadCylinder,
+                           HeightCylinder,
+                           0.*deg,
+                           360.0*deg); 
+
+    logicCylinder = new G4LogicalVolume(solidCylinder,
+                                    Pb,
+                                    "logicCylinder");
+
+    physCylinder  = new G4PVPlacement(0,
+                                   CylinderVector,
+                                   logicCylinder,
+                                   "physCylinder",
+                                   logicWorld,
+                                   false,
+                                   0,
+                                   true); 
+    
+    /* Colours & Styling */
+    G4VisAttributes* visAttributesCylinder = new G4VisAttributes(G4Colour(0.1, 0.1, 0.8));
+    visAttributesCylinder->SetVisibility(true);
+    visAttributesCylinder->SetForceSolid(true);
+    logicCylinder->SetVisAttributes(visAttributesCylinder);
+
+    // *********************************************************************
+
+
+    // **** Build Plugs ** *************************************************
+    G4double InnerRadPlug = 0.*cm;
+    G4double OuterRadPlug = 1.68*cm;
+    G4double HeightPlug   = 0.85*cm;
+
+    solidPlug = new G4Tubs("solidPlug",
+                           InnerRadPlug,
+                           OuterRadPlug,
+                           HeightPlug,
+                           0.*deg,
+                           360.0*deg); 
+
+    logicPlug = new G4LogicalVolume(solidPlug,
+                                    Pb,
+                                    "logicPlug");
+
+    G4double xPlug1Pos = 0.*cm;
+    G4double yPlug1Pos = 0.*cm;
+    G4double zPlug1Pos = (-zWorld + 2*zFloor + 2*zProfile + 2*HeightRim + 2*HeightCylinder - HeightPlug);
+    
+    auto Plug1Vector = G4ThreeVector(xPlug1Pos, yPlug1Pos, zPlug1Pos);    
+
+    physPlug1  = new G4PVPlacement(0,
+                                   Plug1Vector,
+                                   logicPlug,
+                                   "physPlug1",
+                                   logicWorld,
+                                   false,
+                                   0,
+                                   true); 
+ 
+    G4double xPlug2Pos = 0.*cm;
+    G4double yPlug2Pos = 0.*cm;
+    G4double zPlug2Pos = (-zWorld + 2*zFloor + 2*zProfile + 2*HeightRim + HeightPlug);
+    
+    auto Plug2Vector = G4ThreeVector(xPlug2Pos, yPlug2Pos, zPlug2Pos);    
+
+    physPlug2  = new G4PVPlacement(0,
+                                   Plug2Vector,
+                                   logicPlug,
+                                   "physPlug2",
+                                   logicWorld,
+                                   false,
+                                   1,
+                                   true);    
+
+    /* Colours & Styling */
+    logicPlug->SetVisAttributes(visAttributesCylinder);
+
+    // *********************************************************************
+
+
 
     return physWorld;
 };
